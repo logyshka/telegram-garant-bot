@@ -1,0 +1,8 @@
+yes=✅ Да
+no=❌ Нет
+cancel=🚫 Отмена
+close=✖️ Закрыть
+back=⏪ Назад
+add=➕ Добавить
+delete=🗑 Удалить
+on-off={% if state %}❌ Выключить {% else %}✅ Включить {% endif %}
