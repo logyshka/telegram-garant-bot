@@ -6,6 +6,7 @@ from src.domain.enums import Currency
 class Balance(Model):
     class Meta:
         table = 'balances'
+        unique_together = ('user', 'currency')
 
     id = fields.IntField(primary_key=True)
     user = fields.ForeignKeyField('models.User', related_name='balances')

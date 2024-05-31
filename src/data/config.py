@@ -1,10 +1,12 @@
 from pathlib import Path
 
-import pytz as pytz
+import pytz
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage, SimpleEventIsolation
 from environs import Env
+
+from src.domain.enums import LocaleName
 
 BASE_DIR = Path(__file__).parent.parent.parent
 
@@ -13,7 +15,7 @@ env.read_env()
 
 # Получаем конфиги
 BOT_TOKEN = env.str('BOT_TOKEN')
-ADMIN_IDS = list(map(int, env.list('ADMIN_IDS')))
+OWNER_IDS = list(map(int, env.list('OWNER_IDS')))
 
 # Настраиваем конфигурацию бота
 BOT_DEFAULT = DefaultBotProperties(
@@ -38,7 +40,7 @@ DATABASE_CONFIG = {
 
 # Настройка локализации
 LOCALES_DIR = BASE_DIR / 'src' / 'data' / 'locales'
-DEFAULT_LOCALE_NAME = 'ru'
+DEFAULT_LOCALE_NAME = LocaleName.RU
 
 # Настройка менеджера конфигурации
 CONFIG_MANAGER_FILE = BASE_DIR / 'config.pkl'

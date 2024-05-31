@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 
+from src.domain.enums import LocaleName
+
 
 @dataclass
 class Locale:
-    name: str
+    name: LocaleName
     data: dict[str, str]

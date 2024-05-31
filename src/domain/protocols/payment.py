@@ -97,7 +97,7 @@ class PaymentFactory:
 
     async def get_payment_data(self) -> dict[str, Any]:
         return {
-            key: await self._config_manager.get_value(key.value)
+            key.value: await self._config_manager.get_value(key.value)
             for key in self._payment_class.config_keys.all()
         }
 

@@ -2,6 +2,7 @@ from tortoise import fields, Model
 
 from .balance import Balance
 from .bill import Bill
+from ..enums import LocaleName
 
 
 class User(Model):
@@ -9,7 +10,6 @@ class User(Model):
         table = 'users'
 
     id = fields.BigIntField(primary_key=True)
-    url = fields.CharField(max_length=150)
-    locale_name = fields.CharField(max_length=5)
+    locale_name = fields.CharEnumField(LocaleName, null=True)
     balances: fields.BackwardFKRelation[Balance]
     bills: fields.BackwardFKRelation[Bill]

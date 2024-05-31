@@ -2,10 +2,11 @@ from abc import abstractmethod, ABC
 from typing import Protocol, Optional
 
 from ..common.locale import Locale
+from ..enums import LocaleName
 
 
 class LocaleManager(ABC):
-    def __init__(self, default_locale_name: str):
+    def __init__(self, default_locale_name: LocaleName):
         self.default_locale_name: str = default_locale_name
         self.locales: list[Locale] = []
 
@@ -28,7 +29,15 @@ class LocaleManager(ABC):
         ...
 
     @abstractmethod
-    async def get_user_locale_name(self, user_id: int) -> Optional[str]:
+    async def get_user_locale_name(self, user_id: int) -> Optional[LocaleName]:
+        ...
+
+    @abstractmethod
+    async def change_user_locale_name(
+            self,
+            user_id: int,
+            locale_name: LocaleName
+    ) -> None:
         ...
 
 

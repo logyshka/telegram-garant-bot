@@ -1,2 +1,11 @@
-from .admin import IsAdmin
-from .sponsor import IsFollowedSponsor
+from .locale import (
+    IsSingleLocaled,
+)
+from .role import (
+    HasRole,
+    IS_ADMIN,
+    IS_OWNER,
+)
+from .sponsor import (
+    IsFollowedSponsor,
+)

@@ -4,21 +4,34 @@ from dishka import Provider, provide, Scope
 from src.data.config import *
 from src.domain.common.currency_limits import CurrencyLimits
 from src.domain.enums import Currency
-from src.domain.protocols import *
-from src.domain.protocols.payment_manager import PaymentManager
-from src.impl.protocols import *
-from src.impl.protocols.payment import CryptoBotPayment
+from src.domain.protocols import (
+    ConfigManager,
+    LocaleManager,
+    RoleManager,
+    SponsorManager,
+    PaymentManager,
+    UserManager, BanManager
+)
+from src.impl.protocols import (
+    DefaultRoleManagerFactory,
+    FileConfigManagerFactory,
+    DefaultLocaleManageFactory,
+    DefaultSponsorManagerFactory,
+    DefaultPaymentManagerFactory,
+    DefaultUserManagerFactory,
+    CryptoBotPayment, DefaultBanManagerFactory,
+)
 
 
 class DefaultProvider(Provider):
     scope = Scope.APP
 
     @provide
-    async def get_admin_manager(self) -> AdminManager:
-        factory = MemoryAdminManagerFactory(
-            admin_ids=ADMIN_IDS
+    async def get_role_manager(self) -> RoleManager:
+        factory = DefaultRoleManagerFactory(
+            owner_ids=OWNER_IDS
         )
-        return await factory.create_admin_manager()
+        return await factory.create_role_manager()
 
     @provide
     async def get_config_manager(self) -> ConfigManager:
@@ -53,3 +66,13 @@ class DefaultProvider(Provider):
             config_manager=config_manager
         )
         return await payment_manager.create_payment_manager()
+
+    @provide
+    async def get_user_manager(self) -> UserManager:
+        factory = DefaultUserManagerFactory()
+        return await factory.create_user_manager()
+
+    @provide
+    async def get_ban_manager(self) -> BanManager:
+        factory = DefaultBanManagerFactory()
+        return await factory.create_ban_manager()

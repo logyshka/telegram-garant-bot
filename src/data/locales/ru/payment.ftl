@@ -14,7 +14,7 @@ payment-settings-item-view=<b>{% if state %}✅{% else %}❌{% endif %} {{ payme
 payment-settings-item-change=📲 {% if has_account %}Подключить другой аккаунт{% else %}Подключить аккаунт{% endif %}
 
 bill-create-currency=💵 Выберите валюту для пополнения:
-bill-create-amount=💵 Введите сумму пополнения от <b>{{ limit.min_str }}</b> до <b>{{ limits.max_str }}</b>
+bill-create-amount=💵 Введите сумму пополнения от <b>{{ limits.min_str }}</b> до <b>{{ limits.max_str }}</b>
 bill-create-payment=💡 Выберите способ пополнения:
 bill-pending=💳 Способ пополнения: <b>{{ bill.payment_display_name }}</b>
  💵 Сумма пополнения <b>{{ bill.amount_str }}</b>

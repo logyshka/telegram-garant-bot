@@ -28,3 +28,23 @@ class SponsorMenuSG(StatesGroup):
 class SponsorUpdateSG(StatesGroup):
     creates_join_request = State()
     expire_date = State()
+
+
+class RoleMenuSG(StatesGroup):
+    role = State()
+    constant_role = State()
+
+
+class BanMenuSG(StatesGroup):
+    view_banned = State()
+    view_unbanned = State()
+
+
+class BanDeleteSG(StatesGroup):
+    confirm = State()
+
+
+class BanCreateSG(StatesGroup):
+    reason = State()
+    till = State()
+    confirm = State()
